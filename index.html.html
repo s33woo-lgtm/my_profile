@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>정선우 | Sunwoo Jeong - Sports & Technology Portfolio</title>
+    <!-- Google Fonts: Inter & Noto Sans KR -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans KR', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            500: '#0284c7',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            900: '#0c4a6e',
+                            accent: '#38bdf8'
+                        },
+                        darkbg: '#0a0d14',
+                        darkcard: 'rgba(23, 28, 41, 0.75)',
+                        darkborder: 'rgba(255, 255, 255, 0.08)'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0d14;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #222d3d;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0284c7;
+        }
+
+        /* Glassmorphism elements */
+        .glass-nav {
+            background: rgba(10, 13, 20, 0.82);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .light .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .glass-card {
+            background: rgba(18, 24, 38, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .light .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(56, 189, 248, 0.35);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px -10px rgba(2, 132, 199, 0.2);
+        }
+
+        /* Active navigation state styling */
+        .nav-link.active {
+            color: #38bdf8;
+            font-weight: 600;
+        }
+        .nav-link.active::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: #38bdf8;
+            border-radius: 2px;
+            margin-top: 2px;
+        }
+
+        /* Subtle glowing gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .light .gradient-text {
+            background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gradient-accent {
+            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Badge pill design */
+        .tech-badge {
+            background: rgba(56, 189, 248, 0.1);
+            color: #38bdf8;
+            border: 1px solid rgba(56, 189, 248, 0.25);
+        }
+        .light .tech-badge {
+            background: rgba(2, 132, 199, 0.08);
+            color: #0284c7;
+            border: 1px solid rgba(2, 132, 199, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-darkbg text-slate-200 dark antialiased selection:bg-sky-500 selection:text-white transition-colors duration-300 min-h-screen flex flex-col">
+
+    <!-- Fixed Navigation Bar -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 sm:h-20">
+                <!-- Brand Title / Logo -->
+                <a href="#about" class="flex items-center gap-3 group">
+                    <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-sky-500 to-indigo-600 flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-sky-500/20 group-hover:scale-105 transition-transform">
+                        SJ
+                    </div>
+                    <div>
+                        <span class="text-base font-bold tracking-tight text-white dark:text-white light:text-slate-900 group-hover:text-sky-400 transition-colors">
+                            정선우 <span class="text-xs font-normal text-slate-400 ml-1">Sunwoo Jeong</span>
+                        </span>
+                        <span class="block text-[10px] text-sky-400 font-medium tracking-wider uppercase">Sports & Tech</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center space-x-1 lg:space-x-2">
+                    <a href="#about" class="nav-link px-3 py-2 text-sm text-slate-300 hover:text-white transition-colors">소개</a>
+                    <a href="#experience" class="nav-link px-3 py-2 text-sm text-slate-300 hover:text-white transition-colors">학력 & 이력</a>
+                    <a href="#projects" class="nav-link px-3 py-2 text-sm text-slate-300 hover:text-white transition-colors">주요 프로젝트</a>
+                    <a href="#certifications" class="nav-link px-3 py-2 text-sm text-slate-300 hover:text-white transition-colors">자격 & 수상</a>
+                    <a href="#skills" class="nav-link px-3 py-2 text-sm text-slate-300 hover:text-white transition-colors">보유 역량</a>
+                    <a href="#contact" class="nav-link px-3 py-2 text-sm text-slate-300 hover:text-white transition-colors">연락처</a>
+                </nav>
+
+                <!-- Actions: Theme Toggle & Mobile Menu Trigger -->
+                <div class="flex items-center gap-3">
+                    <button id="themeToggle" aria-label="테마 전환" class="p-2 rounded-xl bg-slate-800/80 border border-slate-700/50 text-slate-300 hover:text-white hover:bg-slate-700/80 transition-all">
+                        <i class="fa-solid fa-moon text-sky-400 dark:inline hidden"></i>
+                        <i class="fa-solid fa-sun text-amber-400 dark:hidden inline"></i>
+                    </button>
+
+                    <!-- Mobile Hamburger Toggle -->
+                    <button id="mobileMenuBtn" aria-label="메뉴 열기" class="md:hidden p-2 rounded-xl bg-slate-800/80 border border-slate-700/50 text-slate-300 hover:text-white">
+                        <i class="fa-solid fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Menu -->
+        <div id="mobileMenu" class="hidden md:hidden border-t border-slate-800/80 bg-slate-950/95 backdrop-blur-xl px-4 pt-3 pb-6 space-y-2">
+            <a href="#about" class="mobile-nav-link block px-4 py-2.5 rounded-lg text-sm text-slate-200 hover:bg-slate-800/60 hover:text-sky-400">소개</a>
+            <a href="#experience" class="mobile-nav-link block px-4 py-2.5 rounded-lg text-sm text-slate-200 hover:bg-slate-800/60 hover:text-sky-400">학력 & 이력</a>
+            <a href="#projects" class="mobile-nav-link block px-4 py-2.5 rounded-lg text-sm text-slate-200 hover:bg-slate-800/60 hover:text-sky-400">주요 프로젝트</a>
+            <a href="#certifications" class="mobile-nav-link block px-4 py-2.5 rounded-lg text-sm text-slate-200 hover:bg-slate-800/60 hover:text-sky-400">자격 & 수상</a>
+            <a href="#skills" class="mobile-nav-link block px-4 py-2.5 rounded-lg text-sm text-slate-200 hover:bg-slate-800/60 hover:text-sky-400">보유 역량</a>
+            <a href="#contact" class="mobile-nav-link block px-4 py-2.5 rounded-lg text-sm text-slate-200 hover:bg-slate-800/60 hover:text-sky-400">연락처</a>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow pt-24 sm:pt-28">
+
+        <!-- SECTION 1: ABOUT & HERO -->
+        <section id="about" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                
+                <!-- Left Column: Avatar & Quick Info -->
+                <div class="lg:col-span-5 flex flex-col items-center text-center lg:items-start lg:text-left">
+                    <div class="relative group mb-6">
+                        <div class="absolute -inset-1 rounded-full bg-gradient-to-r from-sky-500 to-indigo-600 opacity-50 blur group-hover:opacity-80 transition duration-500"></div>
+                        <img src="watermarked_img_6259109814702167758.png" alt="정선우 프로필 이미지" class="relative w-48 h-48 sm:w-56 sm:h-56 rounded-full object-cover border-4 border-slate-900 shadow-2xl">
+                        <span class="absolute bottom-2 right-2 px-3 py-1 bg-slate-900/90 text-sky-400 text-xs font-semibold rounded-full border border-sky-500/30 shadow">
+                            <i class="fa-solid fa-circle text-[8px] text-emerald-400 mr-1 animate-pulse"></i> 재학 중
+                        </span>
+                    </div>
+
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-2">
+                        정선우 <span class="text-xl sm:text-2xl font-medium text-slate-400">Sunwoo Jeong</span>
+                    </h1>
+                    
+                    <p class="text-base sm:text-lg text-sky-400 font-medium mb-4">
+                        서경대학교 스포츠앤테크놀로지학과
+                    </p>
+
+                    <div class="flex flex-wrap justify-center lg:justify-start gap-2 mb-6">
+                        <span class="px-3 py-1 text-xs rounded-full bg-slate-800/80 text-slate-300 border border-slate-700/60">
+                            <i class="fa-solid fa-graduation-cap text-sky-400 mr-1.5"></i> 스포츠테크
+                        </span>
+                        <span class="px-3 py-1 text-xs rounded-full bg-slate-800/80 text-slate-300 border border-slate-700/60">
+                            <i class="fa-solid fa-notes-medical text-sky-400 mr-1.5"></i> 스포츠 재활
+                        </span>
+                        <span class="px-3 py-1 text-xs rounded-full bg-slate-800/80 text-slate-300 border border-slate-700/60">
+                            <i class="fa-solid fa-chart-line text-sky-400 mr-1.5"></i> 마케팅 & 기획
+                        </span>
+                    </div>
+
+                    <div class="flex items-center gap-3 w-full sm:w-auto">
+                        <a href="#contact" class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-sm font-semibold shadow-lg shadow-sky-600/30 transition-all">
+                            <i class="fa-solid fa-paper-plane"></i> 문의 및 연락하기
+                        </a>
+                        <a href="https://notion.so/sunwoo_portfolio" target="_blank" rel="noopener noreferrer" class="p-3 rounded-xl glass-card text-slate-300 hover:text-white hover:border-sky-500/50 transition-all" title="외부 노션 포트폴리오 보기">
+                            <i class="fa-solid fa-arrow-up-right-from-square text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Column: Highlight Statements & Profile Details -->
+                <div class="lg:col-span-7 space-y-6">
+                    
+                    <!-- Key Tagline Card -->
+                    <div class="p-6 sm:p-8 rounded-2xl glass-card border-l-4 border-l-sky-500 relative overflow-hidden">
+                        <div class="text-xs uppercase font-semibold text-sky-400 tracking-wider mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-quote-left"></i> Profile Tagline
+                        </div>
+                        <blockquote class="text-xl sm:text-2xl font-bold text-white mb-3">
+                            "문제 해결과 성장에 즐거움을 느낍니다."
+                        </blockquote>
+                        <p class="text-slate-300 text-base sm:text-lg leading-relaxed">
+                            끊임없는 배움과 시도로 더 나은 답을 찾아갑니다.
+                        </p>
+                    </div>
+
+                    <!-- Research & Career Interests -->
+                    <div class="p-6 rounded-2xl glass-card">
+                        <h2 class="text-sm uppercase font-semibold text-slate-400 tracking-wider mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-compass text-sky-400"></i> 관심 분야 (Research & Career Interests)
+                        </h2>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-900/50 border border-slate-800">
+                                <div class="w-8 h-8 rounded-lg bg-sky-500/10 text-sky-400 flex items-center justify-center font-bold">
+                                    <i class="fa-solid fa-heart-pulse"></i>
+                                </div>
+                                <span class="text-sm text-slate-200 font-medium">스포츠 재활</span>
+                            </div>
+                            <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-900/50 border border-slate-800">
+                                <div class="w-8 h-8 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center font-bold">
+                                    <i class="fa-solid fa-bullhorn"></i>
+                                </div>
+                                <span class="text-sm text-slate-200 font-medium">스포츠 마케팅</span>
+                            </div>
+                            <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-900/50 border border-slate-800">
+                                <div class="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center font-bold">
+                                    <i class="fa-solid fa-chart-pie"></i>
+                                </div>
+                                <span class="text-sm text-slate-200 font-medium">스포츠 데이터 분석</span>
+                            </div>
+                            <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-900/50 border border-slate-800">
+                                <div class="w-8 h-8 rounded-lg bg-purple-500/10 text-purple-400 flex items-center justify-center font-bold">
+                                    <i class="fa-solid fa-microchip"></i>
+                                </div>
+                                <span class="text-sm text-slate-200 font-medium">헬스케어 테크</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Core Strengths -->
+                    <div class="p-6 rounded-2xl glass-card">
+                        <h2 class="text-sm uppercase font-semibold text-slate-400 tracking-wider mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-shield-halved text-sky-400"></i> 나의 핵심 강점
+                        </h2>
+                        <ul class="space-y-3">
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-check-circle text-sky-400 mt-1 flex-shrink-0"></i>
+                                <span class="text-sm text-slate-200"><strong>성실한 과제 수행력 및 확실한 마감 준수:</strong> 주어진 역할을 체계적으로 관리하며 철저한 시한 내 성과를 달성합니다.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-check-circle text-sky-400 mt-1 flex-shrink-0"></i>
+                                <span class="text-sm text-slate-200"><strong>문제 원인 파악 및 집요한 해결력:</strong> 복잡한 비효율성이나 문제 직면 시 원인을 원천적으로 분석하고 개선책을 마련합니다.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-check-circle text-sky-400 mt-1 flex-shrink-0"></i>
+                                <span class="text-sm text-slate-200"><strong>신기술 및 AI 도구의 빠른 습득력:</strong> 생성형 AI, 각종 기획/디자인 프로그램 등 신기술을 실무에 빠르게 적용합니다.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Target Career / Goal -->
+                    <div class="p-6 rounded-2xl glass-card bg-gradient-to-r from-sky-950/40 to-slate-900/60 border border-sky-500/20">
+                        <h2 class="text-xs uppercase font-semibold text-sky-400 tracking-wider mb-2">
+                            <i class="fa-solid fa-bullseye mr-1"></i> 희망 진로 및 목표 직무
+                        </h2>
+                        <p class="text-sm text-slate-200 font-medium">
+                            스포츠 브랜드/헬스케어 기획 및 마케팅, 스포츠 재활 센터 운영/기획
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: EDUCATION & EXPERIENCE -->
+        <section id="experience" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-slate-800/80">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-xs uppercase font-bold tracking-widest text-sky-400 mb-2">Academic & Practical History</h2>
+                <p class="text-2xl sm:text-3xl font-extrabold text-white">학력 및 이력 사항</p>
+                <p class="text-sm text-slate-400 mt-2">이론적 전문성과 스포츠 현장 실무 경험의 결합</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- Education & Work Experience Column -->
+                <div class="space-y-6">
+                    <div class="flex items-center gap-3 pb-2 border-b border-slate-800">
+                        <div class="w-10 h-10 rounded-xl bg-sky-500/10 text-sky-400 flex items-center justify-center font-bold text-lg">
+                            <i class="fa-solid fa-user-graduate"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white">학력 및 현장 실습 경력</h3>
+                    </div>
+
+                    <!-- Academic Card -->
+                    <div class="p-6 rounded-2xl glass-card relative pl-8 border-l-2 border-l-sky-500">
+                        <span class="inline-block px-2.5 py-0.5 mb-2 text-xs font-semibold rounded bg-sky-500/10 text-sky-400">학력</span>
+                        <h4 class="text-lg font-bold text-white">서경대학교</h4>
+                        <p class="text-sm text-sky-400 font-medium mb-1">스포츠앤테크놀로지학과 (재학)</p>
+                        <p class="text-xs text-slate-400">스포츠 과학 및 테크놀로지 융합 학문 전공</p>
+                    </div>
+
+                    <!-- Internships & Jobs -->
+                    <div class="p-6 rounded-2xl glass-card relative pl-8 border-l-2 border-l-indigo-500">
+                        <span class="inline-block px-2.5 py-0.5 mb-2 text-xs font-semibold rounded bg-indigo-500/10 text-indigo-400">현장실습</span>
+                        <div class="flex justify-between items-start mb-1">
+                            <h4 class="text-base font-bold text-white">스포츠 재활 센터</h4>
+                            <span class="text-xs text-slate-400 font-mono">2025.07 ~ 2025.08</span>
+                        </div>
+                        <p class="text-sm text-indigo-300 font-medium mb-2">운동처방 보조</p>
+                        <p class="text-xs text-slate-300">내방 회원 체형/움직임 측정 보조 및 맞춤형 재활 운동처방 세션 준비 및 지원</p>
+                    </div>
+
+                    <div class="p-6 rounded-2xl glass-card relative pl-8 border-l-2 border-l-indigo-500">
+                        <span class="inline-block px-2.5 py-0.5 mb-2 text-xs font-semibold rounded bg-indigo-500/10 text-indigo-400">아르바이트</span>
+                        <div class="flex justify-between items-start mb-1">
+                            <h4 class="text-base font-bold text-white">유소년 스포츠 클럽</h4>
+                            <span class="text-xs text-slate-400 font-mono">2024.03 ~ 2024.12</span>
+                        </div>
+                        <p class="text-sm text-indigo-300 font-medium mb-2">보조 코치 및 관리</p>
+                        <p class="text-xs text-slate-300">유소년 스포츠 프로그램 진행 보조, 안전 관리 및 일정/시설 운영 관리</p>
+                    </div>
+                </div>
+
+                <!-- Activities & Sports Practice Column -->
+                <div class="space-y-6">
+                    <div class="flex items-center gap-3 pb-2 border-b border-slate-800">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center font-bold text-lg">
+                            <i class="fa-solid fa-users-gear"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white">동아리 · 대외활동 & 스포츠 지도</h3>
+                    </div>
+
+                    <div class="p-6 rounded-2xl glass-card relative pl-8 border-l-2 border-l-emerald-500">
+                        <span class="inline-block px-2.5 py-0.5 mb-2 text-xs font-semibold rounded bg-emerald-500/10 text-emerald-400">동아리</span>
+                        <div class="flex justify-between items-start mb-1">
+                            <h4 class="text-base font-bold text-white">학과 스포츠 테크놀로지 학술 동아리</h4>
+                            <span class="text-xs text-slate-400 font-mono">2025.03 ~ 현재</span>
+                        </div>
+                        <p class="text-xs text-slate-300">스포츠 기술 트렌드 연구, 최신 동작 분석 센서 및 소프트웨어 스터디 수행</p>
+                    </div>
+
+                    <div class="p-6 rounded-2xl glass-card relative pl-8 border-l-2 border-l-emerald-500">
+                        <span class="inline-block px-2.5 py-0.5 mb-2 text-xs font-semibold rounded bg-emerald-500/10 text-emerald-400">봉사활동</span>
+                        <div class="flex justify-between items-start mb-1">
+                            <h4 class="text-base font-bold text-white">지역 청소년 스포츠 체험 교실</h4>
+                            <span class="text-xs text-slate-400 font-mono">2024.09</span>
+                        </div>
+                        <p class="text-xs text-slate-300">청소년 대상 스포츠 체험 교실 재능기부 봉사 활동 및 신체 활동 가이드 제공</p>
+                    </div>
+
+                    <!-- Sports Practice Card -->
+                    <div class="p-6 rounded-2xl glass-card bg-slate-900/80 border border-slate-800">
+                        <h4 class="text-sm font-bold text-white mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-dumbbell text-emerald-400"></i> 스포츠 활동 및 지도 경험
+                        </h4>
+                        <ul class="space-y-2 text-xs text-slate-300">
+                            <li class="flex items-start gap-2">
+                                <span class="text-emerald-400 font-bold">•</span>
+                                <span>웨이트 트레이닝 및 기능적 운동(FMS) 측정 보조</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-emerald-400 font-bold">•</span>
+                                <span>생활체육 동호회(배드민턴, 축구) 활동 및 매칭 관리</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 3: KEY PROJECTS -->
+        <section id="projects" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-slate-800/80">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-xs uppercase font-bold tracking-widest text-sky-400 mb-2">Research & Applied Projects</h2>
+                <p class="text-2xl sm:text-3xl font-extrabold text-white">주요 활동 및 프로젝트</p>
+                <p class="text-sm text-slate-400 mt-2">스포츠 기술과 데이터, 마케팅의 접점을 창출한 핵심 과제</p>
+            </div>
+
+            <!-- Main Featured Project Card -->
+            <div class="glass-card rounded-3xl p-6 sm:p-10 relative overflow-hidden border border-sky-500/30">
+                <div class="absolute top-0 right-0 p-8 opacity-10 pointer-events-none text-sky-400 text-9xl">
+                    <i class="fa-solid fa-person-running"></i>
+                </div>
+
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-xs font-semibold mb-6">
+                    <i class="fa-solid fa-star"></i> Featured Project
+                </div>
+
+                <h3 class="text-2xl sm:text-3xl font-bold text-white mb-4">
+                    AI 및 영상 분석 기반 동작 재활 프로젝트
+                </h3>
+
+                <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-8 max-w-4xl">
+                    시각 센서 기반으로 사용자의 스쿼트 동작을 실시간 분석하여 불균형을 정확하게 측정하고, 분석된 데이터에 기초하여 맞춤형 재활 운동 마케팅 페이지를 기획한 융합 프로젝트입니다.
+                </p>
+
+                <!-- Details Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div class="p-5 rounded-2xl bg-slate-900/70 border border-slate-800">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-sky-400 mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-user-gear"></i> 내가 담당한 역할
+                        </h4>
+                        <p class="text-sm text-slate-200">
+                            타겟 사용자 분석, 마케팅 기획 및 과제 일정 관리 전반 총괄
+                        </p>
+                    </div>
+
+                    <div class="p-5 rounded-2xl bg-slate-900/70 border border-slate-800">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-emerald-400 mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-lightbulb"></i> 활동을 통해 배운 점
+                        </h4>
+                        <p class="text-sm text-slate-200">
+                            스포츠 기술과 마케팅의 접점을 이해하고, 성실한 과제 수행이 최종 프로젝트의 완성도를 다진다는 점을 체득
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Media Section Placeholders -->
+                <div class="border-t border-slate-800/80 pt-6">
+                    <h4 class="text-xs uppercase font-bold text-slate-400 tracking-wider mb-4">프로젝트 증빙 및 미디어 자료</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        
+                        <!-- Photo Placeholder -->
+                        <div class="p-5 rounded-xl bg-slate-950/80 border border-dashed border-slate-700 flex items-center gap-4 group hover:border-sky-500/50 transition-colors">
+                            <div class="w-12 h-12 rounded-lg bg-sky-500/10 text-sky-400 flex items-center justify-center text-xl flex-shrink-0">
+                                <i class="fa-solid fa-image"></i>
+                            </div>
+                            <div>
+                                <h5 class="text-sm font-semibold text-white group-hover:text-sky-400 transition-colors">[프로젝트 실습 사진]</h5>
+                                <p class="text-xs text-slate-400">스쿼트 동작 데이터 수집 및 실습 현장</p>
+                            </div>
+                        </div>
+
+                        <!-- Video Link Placeholder -->
+                        <div class="p-5 rounded-xl bg-slate-950/80 border border-dashed border-slate-700 flex items-center gap-4 group hover:border-indigo-500/50 transition-colors">
+                            <div class="w-12 h-12 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-xl flex-shrink-0">
+                                <i class="fa-solid fa-video"></i>
+                            </div>
+                            <div>
+                                <h5 class="text-sm font-semibold text-white group-hover:text-indigo-400 transition-colors">[동작 분석 시연 영상]</h5>
+                                <p class="text-xs text-slate-400">AI 시각 센서 동작 관측 및 분석 시연</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 4: CERTIFICATIONS & HONORS -->
+        <section id="certifications" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-slate-800/80">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-xs uppercase font-bold tracking-widest text-sky-400 mb-2">Credentials & Recognitions</h2>
+                <p class="text-2xl sm:text-3xl font-extrabold text-white">자격 및 수상 경력</p>
+                <p class="text-sm text-slate-400 mt-2">검증된 전문 자격 및 성과 및 연수 이수 내역</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- Certifications Card -->
+                <div class="p-6 rounded-2xl glass-card flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl mb-4 font-bold">
+                            <i class="fa-solid fa-certificate"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-4">보유 자격증</h3>
+                        <ul class="space-y-3">
+                            <li class="p-3 rounded-xl bg-slate-900/60 border border-slate-800">
+                                <span class="text-xs font-semibold text-amber-400 block mb-0.5">국가자격</span>
+                                <p class="text-sm font-bold text-white">생활스포츠지도사 2급</p>
+                                <p class="text-xs text-slate-400">(보디빌딩)</p>
+                            </li>
+                            <li class="p-3 rounded-xl bg-slate-900/60 border border-slate-800">
+                                <span class="text-xs font-semibold text-rose-400 block mb-0.5">안전 자격</span>
+                                <p class="text-sm font-bold text-white">CPR & AED 자격증</p>
+                                <p class="text-xs text-slate-400">(응급처치 과정)</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Education & Training Card -->
+                <div class="p-6 rounded-2xl glass-card flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-sky-500/10 text-sky-400 flex items-center justify-center text-xl mb-4 font-bold">
+                            <i class="fa-solid fa-book-open-reader"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-4">교육 · 연수 이수</h3>
+                        <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
+                            <span class="text-xs font-semibold text-sky-400 block mb-1">실무 이수</span>
+                            <p class="text-sm font-bold text-white mb-1">스포츠 비즈니스 & 마케팅 실무 과정</p>
+                            <p class="text-xs text-slate-300">스포츠 산업에 특화된 비즈니스 구조 및 마케팅 전략 실무 과정 완수</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Awards Card -->
+                <div class="p-6 rounded-2xl glass-card flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-xl mb-4 font-bold">
+                            <i class="fa-solid fa-trophy"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-4">수상 경력</h3>
+                        <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-xs font-semibold text-purple-400">우수상</span>
+                                <span class="text-xs text-slate-400 font-mono">2025</span>
+                            </div>
+                            <p class="text-sm font-bold text-white mb-1">학과 스포츠 테크 캡스톤 아이디어 경진대회</p>
+                            <p class="text-xs text-slate-300">스포츠와 기술을 접목한 혁신적 캡스톤 아이디어 제시 및 검증</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 5: SKILLS & TOOLSETS -->
+        <section id="skills" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-slate-800/80">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-xs uppercase font-bold tracking-widest text-sky-400 mb-2">Technical & Operational Competencies</h2>
+                <p class="text-2xl sm:text-3xl font-extrabold text-white">내가 사용할 수 있는 것 (보유 역량)</p>
+                <p class="text-sm text-slate-400 mt-2">디지털 도구, 데이터 분석, 스포츠 장비 및 지도 역량</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Skill Card 1: AI & Programs -->
+                <div class="p-6 rounded-2xl glass-card">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-sky-500/10 text-sky-400 flex items-center justify-center font-bold">
+                            <i class="fa-solid fa-robot"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-white">프로그램 / AI 도구</h3>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="p-3 rounded-xl bg-slate-900/50 border border-slate-800">
+                            <p class="text-sm font-semibold text-sky-300">ChatGPT / Claude</p>
+                            <p class="text-xs text-slate-400 mt-0.5">정보 조사, 리서치 및 문서화 자동화</p>
+                        </div>
+                        <div class="p-3 rounded-xl bg-slate-900/50 border border-slate-800">
+                            <p class="text-sm font-semibold text-slate-200">MS Office & Notion</p>
+                            <p class="text-xs text-slate-400 mt-0.5">Excel 분석, PPT 기획 문서 작성, Notion DB 구축</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skill Card 2: Sports Equipment -->
+                <div class="p-6 rounded-2xl glass-card">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center font-bold">
+                            <i class="fa-solid fa-toolbox"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-white">스포츠 장비 활용</h3>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="p-3 rounded-xl bg-slate-900/50 border border-slate-800">
+                            <p class="text-sm font-semibold text-emerald-300">FMS (기능적 움직임 검사)</p>
+                            <p class="text-xs text-slate-400 mt-0.5">신체 움직임 불균형 측정 도구 활용</p>
+                        </div>
+                        <div class="p-3 rounded-xl bg-slate-900/50 border border-slate-800">
+                            <p class="text-sm font-semibold text-slate-200">EMS 장비</p>
+                            <p class="text-xs text-slate-400 mt-0.5">미세전기 자극 트레이닝 기초 이해 및 운용</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skill Card 3: Exercise Coaching -->
+                <div class="p-6 rounded-2xl glass-card">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center font-bold">
+                            <i class="fa-solid fa-child"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-white">운동 · 스포츠 지도</h3>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="p-3 rounded-xl bg-slate-900/50 border border-slate-800">
+                            <p class="text-sm font-semibold text-indigo-300">기초 웨이트 트레이닝</p>
+                            <p class="text-xs text-slate-400 mt-0.5">맞춤형 근력 강화 프로그램 가이드</p>
+                        </div>
+                        <div class="p-3 rounded-xl bg-slate-900/50 border border-slate-800">
+                            <p class="text-sm font-semibold text-slate-200">재활 트레이닝 가이드</p>
+                            <p class="text-xs text-slate-400 mt-0.5">기초 기능 회복 및 재활 지도 및 가이드라인 제시</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skill Card 4: Data Analytics -->
+                <div class="p-6 rounded-2xl glass-card">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center font-bold">
+                            <i class="fa-solid fa-chart-column"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-white">데이터 분석</h3>
+                    </div>
+                    <div class="p-3 rounded-xl bg-slate-900/50 border border-slate-800">
+                        <p class="text-sm font-semibold text-purple-300">Excel 데이터 핸들링</p>
+                        <p class="text-xs text-slate-400 mt-0.5">기초 운동 측정 데이터 수집, 정형화 및 수치 정리</p>
+                    </div>
+                </div>
+
+                <!-- Skill Card 5: Visual & Design -->
+                <div class="p-6 rounded-2xl glass-card md:col-span-2 lg:col-span-2">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-rose-500/10 text-rose-400 flex items-center justify-center font-bold">
+                            <i class="fa-solid fa-pen-nib"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-white">영상 · 디자인 (Canva / Figma)</h3>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div class="p-3 rounded-xl bg-slate-900/50 border border-slate-800">
+                            <p class="text-sm font-semibold text-rose-300">Canva / Figma</p>
+                            <p class="text-xs text-slate-400 mt-0.5">카드뉴스 및 스포츠 서비스 홍보 포스터 디자인 제작</p>
+                        </div>
+                        <div class="p-3 rounded-xl bg-slate-900/50 border border-slate-800">
+                            <p class="text-sm font-semibold text-slate-200">콘텐츠 시각화</p>
+                            <p class="text-xs text-slate-400 mt-0.5">복잡한 정보의 깔끔한 카드 및 UI 레이아웃 구성</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 6: CONTACT & LINKS -->
+        <section id="contact" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-t border-slate-800/80">
+            <div class="glass-card rounded-3xl p-8 sm:p-12 text-center max-w-4xl mx-auto relative overflow-hidden bg-gradient-to-b from-slate-900/90 to-slate-950">
+                <div class="w-16 h-16 rounded-2xl bg-sky-500/10 text-sky-400 mx-auto flex items-center justify-center text-2xl font-bold mb-6">
+                    <i class="fa-regular fa-envelope"></i>
+                </div>
+
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white mb-3">연락처 및 링크</h2>
+                <p class="text-slate-300 text-sm sm:text-base max-w-xl mx-auto mb-8">
+                    스포츠 기술 및 마케팅, 재활 관련 연구/협업 및 문의 사항이 있으시면 편하게 연락주세요.
+                </p>
+
+                <!-- Email Interactive Card -->
+                <div class="inline-flex flex-col sm:flex-row items-center gap-3 p-3 sm:px-6 sm:py-4 rounded-2xl bg-slate-900 border border-slate-700/80 mb-8 max-w-full">
+                    <span class="text-sm sm:text-base font-mono text-sky-300 font-semibold truncate">03sunwoo@skuniv.ac.kr</span>
+                    <button onclick="copyEmail()" class="px-4 py-2 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs font-semibold flex items-center gap-2 transition-all shadow-md">
+                        <i class="fa-regular fa-copy"></i> <span id="copyBtnText">이메일 복사</span>
+                    </button>
+                </div>
+
+                <!-- External Links Row -->
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="https://notion.so/sunwoo_portfolio" target="_blank" rel="noopener noreferrer" class="px-6 py-3 rounded-xl bg-slate-800/90 hover:bg-slate-700 border border-slate-700 text-slate-200 hover:text-white text-sm font-semibold flex items-center gap-2 transition-all">
+                        <i class="fa-solid fa-book text-sky-400"></i> Notion 포트폴리오
+                    </a>
+                    <a href="https://linkedin.com/in/sunwoo-jeong" target="_blank" rel="noopener noreferrer" class="px-6 py-3 rounded-xl bg-slate-800/90 hover:bg-slate-700 border border-slate-700 text-slate-200 hover:text-white text-sm font-semibold flex items-center gap-2 transition-all">
+                        <i class="fa-brands fa-linkedin text-sky-400"></i> LinkedIn 프로필
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800/80 py-8 bg-slate-950 text-center text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>© <span id="currentYear"></span> 정선우 (Sunwoo Jeong). All rights reserved.</p>
+            <p class="mt-1 text-slate-600">서경대학교 스포츠앤테크놀로지학과 | Academic & Research Portfolio</p>
+        </div>
+    </footer>
+
+    <!-- Toast Notification Container -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-emerald-600 text-white px-5 py-3 rounded-xl shadow-2xl flex items-center gap-3 text-sm font-medium">
+        <i class="fa-solid fa-circle-check text-lg"></i>
+        <span id="toastMsg">이메일 주소가 복사되었습니다.</span>
+    </div>
+
+    <script>
+        // Set dynamic current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Theme Toggle Logic
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const htmlEl = document.documentElement;
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (htmlEl.classList.contains('dark')) {
+                htmlEl.classList.remove('dark');
+                htmlEl.classList.add('light');
+                localStorage.setItem('theme', 'light');
+            } else {
+                htmlEl.classList.remove('light');
+                htmlEl.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        // Mobile Menu Logic
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // IntersectionObserver for Section Anchor Active State
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '-20% 0px -60% 0px',
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const currentId = entry.target.getAttribute('id');
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${currentId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => observer.observe(section));
+
+        // Copy Email Helper with execCommand fallback for iFrame support
+        function copyEmail() {
+            const emailText = "03sunwoo@skuniv.ac.kr";
+            
+            // Create fallback textarea element
+            const tempInput = document.createElement('textarea');
+            tempInput.value = emailText;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            
+            try {
+                document.execCommand('copy');
+                showToast("이메일 주소가 클립보드에 복사되었습니다!");
+                const copyBtnText = document.getElementById('copyBtnText');
+                copyBtnText.textContent = "복사 완료!";
+                setTimeout(() => {
+                    copyBtnText.textContent = "이메일 복사";
+                }, 2500);
+            } catch (err) {
+                showToast("복사 실패. 주소: " + emailText);
+            } finally {
+                document.body.removeChild(tempInput);
+            }
+        }
+
+        // Custom Toast Notification Trigger
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMsg');
+            toastMsg.textContent = message;
+            
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
